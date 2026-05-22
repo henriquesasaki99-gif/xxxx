@@ -1,0 +1,1744 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hadan Alves — Design Gráfico</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Bebas+Neue&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --black: #080808;
+  --black-2: #111111;
+  --black-3: #181818;
+  --white: #f2ece0;
+  --gold: #d4a840;
+  --gold-bright: #f0c060;
+  --gold-dim: #8a6828;
+  --gold-subtle: rgba(212,168,64,0.12);
+  --muted: #666;
+  --muted-2: #444;
+  --border: rgba(212,168,64,0.18);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--black);
+  color: var(--white);
+  font-family: 'Inter', sans-serif;
+  font-weight: 300;
+  overflow-x: hidden;
+}
+
+/* GRAIN */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 300 300' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* ─────── NAV ─────── */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 500;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.25rem 3.5rem;
+  background: rgba(8,8,8,0.92);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+  transition: padding 0.3s;
+}
+
+.nav-logo {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.5rem;
+  letter-spacing: 0.15em;
+  color: var(--gold);
+  text-decoration: none;
+}
+
+.nav-logo span { color: var(--white); opacity: 0.5; }
+
+.nav-links {
+  display: flex;
+  gap: 2.5rem;
+  list-style: none;
+}
+
+.nav-links a {
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.25s;
+}
+
+.nav-links a:hover { color: var(--gold); }
+
+.nav-whatsapp {
+  background: var(--gold);
+  color: var(--black) !important;
+  padding: 0.5rem 1.25rem;
+  font-weight: 600 !important;
+  letter-spacing: 0.1em !important;
+}
+
+.nav-whatsapp:hover { background: var(--gold-bright) !important; color: var(--black) !important; }
+
+.nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+.nav-hamburger span { width: 22px; height: 1px; background: var(--gold); display: block; transition: all 0.3s; }
+
+/* ─────── HERO ─────── */
+.hero {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  position: relative;
+  overflow: hidden;
+  padding-top: 5rem;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 60% 80% at 70% 50%, rgba(212,168,64,0.07) 0%, transparent 60%),
+              radial-gradient(ellipse 40% 60% at 20% 80%, rgba(212,168,64,0.04) 0%, transparent 50%);
+}
+
+.hero-lines {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.hero-line-v {
+  position: absolute;
+  top: 0; bottom: 0;
+  width: 1px;
+  background: linear-gradient(to bottom, transparent 0%, rgba(212,168,64,0.15) 40%, rgba(212,168,64,0.15) 60%, transparent 100%);
+}
+
+.hero-left {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 4rem 4rem 4rem 4.5rem;
+  position: relative;
+  z-index: 2;
+}
+
+.hero-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 2rem;
+  font-size: 0.65rem;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.hero-eyebrow::before {
+  content: '';
+  display: block;
+  width: 2rem;
+  height: 1px;
+  background: var(--gold);
+}
+
+.hero-h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(3rem, 6vw, 5.5rem);
+  font-weight: 900;
+  line-height: 1.0;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.75rem;
+}
+
+.hero-h1 .italic { font-style: italic; color: var(--gold); font-weight: 400; }
+.hero-h1 .name { display: block; color: var(--white); }
+
+.hero-sub {
+  font-size: 1rem;
+  line-height: 1.75;
+  color: var(--muted);
+  max-width: 28rem;
+  margin: 1.5rem 0 2.5rem;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.btn-gold {
+  background: var(--gold);
+  color: var(--black);
+  padding: 0.85rem 2.25rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  text-decoration: none;
+  display: inline-block;
+  transition: background 0.25s, transform 0.2s;
+  cursor: pointer;
+  border: none;
+}
+
+.btn-gold:hover { background: var(--gold-bright); transform: translateY(-2px); }
+
+.btn-outline {
+  border: 1px solid var(--border);
+  color: var(--muted);
+  padding: 0.85rem 2rem;
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  text-decoration: none;
+  display: inline-block;
+  transition: all 0.25s;
+}
+
+.btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+
+.hero-stats {
+  display: flex;
+  gap: 2.5rem;
+  margin-top: 3.5rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+
+.hero-stat-num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2rem;
+  color: var(--gold);
+  display: block;
+  line-height: 1;
+}
+
+.hero-stat-label {
+  font-size: 0.65rem;
+  color: var(--muted);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-top: 0.25rem;
+}
+
+.hero-right {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  overflow: hidden;
+}
+
+.hero-bg-glyph {
+  position: absolute;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 30vw;
+  color: rgba(212,168,64,0.04);
+  user-select: none;
+  letter-spacing: -0.05em;
+  line-height: 1;
+}
+
+/* logo H diamond */
+.logo-display {
+  position: relative;
+  z-index: 3;
+  text-align: center;
+}
+
+.logo-diamond {
+  width: 180px;
+  height: 180px;
+  border: 2px solid var(--gold);
+  transform: rotate(45deg);
+  position: relative;
+  margin: 0 auto 1.5rem;
+  animation: pulse-border 3s ease-in-out infinite;
+}
+
+.logo-diamond::before {
+  content: '';
+  position: absolute;
+  inset: 8px;
+  border: 1px solid rgba(212,168,64,0.3);
+}
+
+.logo-diamond-inner {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: rotate(-45deg);
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 5rem;
+  color: var(--gold);
+  letter-spacing: -0.05em;
+}
+
+@keyframes pulse-border {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(212,168,64,0.15); }
+  50% { box-shadow: 0 0 40px 10px rgba(212,168,64,0.08); }
+}
+
+.logo-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2.5rem;
+  letter-spacing: 0.3em;
+  color: var(--white);
+}
+
+.logo-subtitle {
+  font-size: 0.65rem;
+  letter-spacing: 0.5em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-top: 0.3rem;
+}
+
+/* floating cards */
+.float-card {
+  position: absolute;
+  background: var(--black-2);
+  border: 1px solid var(--border);
+  padding: 1rem 1.25rem;
+  animation: float 5s ease-in-out infinite;
+  min-width: 150px;
+}
+
+.float-card:nth-child(2) { animation-delay: 1.5s; }
+.float-card:nth-child(3) { animation-delay: 3s; }
+
+.float-card-label {
+  font-size: 0.55rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.4rem;
+}
+
+.float-card-val {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.5rem;
+  color: var(--white);
+}
+
+.float-card-sub { font-size: 0.65rem; color: var(--muted); }
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+/* ─────── TICKER ─────── */
+.ticker {
+  overflow: hidden;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  background: var(--black-3);
+  padding: 0.85rem 0;
+}
+
+.ticker-track {
+  display: flex;
+  gap: 4rem;
+  animation: ticker-scroll 25s linear infinite;
+  white-space: nowrap;
+}
+
+.ticker-item {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 0.9rem;
+  letter-spacing: 0.25em;
+  color: var(--muted);
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.ticker-item .dot {
+  width: 4px; height: 4px;
+  background: var(--gold);
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+@keyframes ticker-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* ─────── SECTIONS ─────── */
+.section {
+  padding: 7rem 4.5rem;
+  position: relative;
+}
+
+.section-label {
+  font-size: 0.62rem;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--gold);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.section-label::before {
+  content: '';
+  display: block;
+  width: 1.5rem;
+  height: 1px;
+  background: var(--gold);
+}
+
+.section-h {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-weight: 700;
+  line-height: 1.15;
+  margin-bottom: 1rem;
+}
+
+.section-h em { font-style: italic; color: var(--gold); font-weight: 400; }
+
+.section-bg-num {
+  position: absolute;
+  right: 4rem;
+  top: 5rem;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 9rem;
+  color: rgba(212,168,64,0.05);
+  user-select: none;
+  line-height: 1;
+}
+
+/* ─────── SERVIÇOS ─────── */
+.services-intro {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 4rem;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.services-intro-text { max-width: 32rem; }
+
+.services-sub {
+  font-size: 0.9rem;
+  color: var(--muted);
+  line-height: 1.75;
+  margin-top: 0.75rem;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1px;
+  background: var(--border);
+}
+
+.service-card {
+  background: var(--black);
+  padding: 2.5rem 1.75rem;
+  position: relative;
+  overflow: hidden;
+  transition: background 0.35s;
+  cursor: default;
+}
+
+.service-card:hover { background: var(--black-2); }
+
+.service-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 0; height: 2px;
+  background: var(--gold);
+  transition: width 0.4s;
+}
+
+.service-card:hover::after { width: 100%; }
+
+.service-icon-wrap {
+  width: 44px; height: 44px;
+  border: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 1.5rem;
+  transition: border-color 0.3s;
+}
+
+.service-card:hover .service-icon-wrap { border-color: var(--gold); }
+
+.service-icon-wrap svg { width: 20px; height: 20px; fill: none; stroke: var(--gold); stroke-width: 1.5; }
+
+.service-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+  line-height: 1.3;
+}
+
+.service-desc { font-size: 0.78rem; line-height: 1.75; color: var(--muted); }
+
+.service-price {
+  margin-top: 1.25rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.4rem;
+  color: var(--gold);
+  letter-spacing: 0.05em;
+}
+
+.service-price span { font-family: 'Inter', sans-serif; font-size: 0.65rem; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; display: block; margin-top: 0.15rem; }
+
+/* ─────── PREÇOS ─────── */
+.pricing-section {
+  background: var(--black-3);
+  padding: 7rem 4.5rem;
+  position: relative;
+}
+
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1.5rem;
+  margin-top: 4rem;
+}
+
+.price-card {
+  background: var(--black);
+  border: 1px solid var(--border);
+  padding: 2rem 1.5rem;
+  position: relative;
+  transition: border-color 0.3s, transform 0.3s;
+}
+
+.price-card:hover { border-color: var(--gold); transform: translateY(-4px); }
+
+.price-card.featured {
+  border-color: var(--gold);
+  background: linear-gradient(160deg, rgba(212,168,64,0.07) 0%, var(--black) 60%);
+}
+
+.price-badge {
+  position: absolute;
+  top: -1px; right: 1.5rem;
+  background: var(--gold);
+  color: var(--black);
+  font-size: 0.55rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 0.3rem 0.7rem;
+}
+
+.price-service-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  line-height: 1.3;
+}
+
+.price-amount {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2.8rem;
+  color: var(--gold);
+  line-height: 1;
+  margin-bottom: 0.25rem;
+}
+
+.price-period { font-size: 0.7rem; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 1.25rem; }
+
+.price-features {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.price-features li {
+  font-size: 0.75rem;
+  color: var(--muted);
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  line-height: 1.5;
+}
+
+.price-features li::before {
+  content: '✦';
+  color: var(--gold);
+  font-size: 0.5rem;
+  margin-top: 0.25rem;
+  flex-shrink: 0;
+}
+
+/* ─────── KITS ─────── */
+.kits-section {
+  padding: 7rem 4.5rem;
+  background: var(--black);
+}
+
+.kits-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+  background: var(--border);
+  margin-top: 4rem;
+}
+
+.kit-card {
+  background: var(--black);
+  padding: 3rem 2.5rem;
+  position: relative;
+  transition: background 0.3s;
+}
+
+.kit-card:hover { background: var(--black-2); }
+
+.kit-card.kit-destaque {
+  background: linear-gradient(160deg, rgba(212,168,64,0.1) 0%, var(--black) 70%);
+}
+
+.kit-num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 5rem;
+  color: rgba(212,168,64,0.08);
+  line-height: 1;
+  margin-bottom: 1rem;
+  user-select: none;
+}
+
+.kit-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.kit-includes {
+  font-size: 0.78rem;
+  color: var(--muted);
+  margin-bottom: 2rem;
+  line-height: 1.75;
+}
+
+.kit-includes strong { color: var(--white); }
+
+.kit-price-wrap {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.kit-price {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 3rem;
+  color: var(--gold);
+  line-height: 1;
+}
+
+.kit-price-label { font-size: 0.7rem; color: var(--muted); letter-spacing: 0.1em; }
+
+.kit-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(212,168,64,0.3);
+  padding-bottom: 0.2rem;
+  transition: gap 0.25s, border-color 0.25s;
+}
+
+.kit-cta:hover { gap: 0.75rem; border-color: var(--gold); }
+
+/* ─────── PROJETO LOJA NOVA ─────── */
+.loja-section {
+  background: var(--black-3);
+  padding: 7rem 4.5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.loja-section::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: radial-gradient(ellipse 70% 60% at 50% 100%, rgba(212,168,64,0.06) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.loja-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6rem;
+  align-items: center;
+  margin-top: 4rem;
+}
+
+.loja-text .section-h { font-size: clamp(2rem, 3.5vw, 3rem); }
+
+.loja-description {
+  font-size: 0.9rem;
+  line-height: 1.85;
+  color: var(--muted);
+  margin: 1.5rem 0 2rem;
+}
+
+.loja-pilares {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 2.5rem;
+}
+
+.pilar {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  font-size: 0.78rem;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.pilar-dot {
+  width: 6px; height: 6px;
+  background: var(--gold);
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-top: 0.4rem;
+}
+
+.loja-price-box {
+  background: var(--black);
+  border: 1px solid var(--gold);
+  padding: 2.5rem;
+  position: relative;
+}
+
+.loja-price-box::before {
+  content: 'PROJETO COMPLETO';
+  position: absolute;
+  top: -1px; left: 2rem;
+  background: var(--gold);
+  color: var(--black);
+  font-size: 0.55rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  padding: 0.3rem 0.75rem;
+}
+
+.loja-from { font-size: 0.7rem; color: var(--muted); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 0.5rem; display: block; margin-top: 1.5rem; }
+
+.loja-price-big {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 5rem;
+  color: var(--gold);
+  line-height: 1;
+}
+
+.loja-nego { font-size: 0.78rem; color: var(--muted); margin-top: 0.75rem; line-height: 1.6; }
+
+.loja-neg strong { color: var(--white); }
+
+/* ─────── PROCESSO ─────── */
+.process-section {
+  padding: 7rem 4.5rem;
+  background: var(--black);
+  position: relative;
+}
+
+.process-steps {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  margin-top: 5rem;
+  position: relative;
+}
+
+.process-steps::before {
+  content: '';
+  position: absolute;
+  top: 2.75rem;
+  left: 12.5%;
+  right: 12.5%;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--gold-dim), transparent);
+}
+
+.step-item {
+  padding: 0 1.5rem;
+  text-align: center;
+  position: relative;
+}
+
+.step-circle {
+  width: 5.5rem; height: 5.5rem;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  display: flex;
+  align-items: center; justify-content: center;
+  margin: 0 auto 2rem;
+  background: var(--black);
+  position: relative;
+  z-index: 2;
+  transition: all 0.3s;
+}
+
+.step-item:hover .step-circle {
+  border-color: var(--gold);
+  background: rgba(212,168,64,0.06);
+}
+
+.step-n {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.6rem;
+  color: var(--gold);
+}
+
+.step-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+}
+
+.step-desc { font-size: 0.78rem; color: var(--muted); line-height: 1.75; }
+
+/* ─────── PORTFOLIO ─────── */
+.portfolio-section {
+  padding: 7rem 4.5rem;
+  background: var(--black-3);
+}
+
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  grid-template-rows: auto auto;
+  gap: 1px;
+  background: var(--border);
+  margin-top: 4rem;
+}
+
+.pf-item {
+  background: var(--black-2);
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  min-height: 260px;
+}
+
+.pf-item.pf-main { grid-row: span 2; }
+
+.pf-img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s;
+}
+
+.pf-item:hover .pf-img { transform: scale(1.05); }
+
+.pf-placeholder {
+  width: 100%; height: 100%; min-height: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 0.75rem;
+  color: var(--muted-2);
+}
+
+.pf-placeholder svg { width: 32px; height: 32px; stroke: var(--muted-2); fill: none; stroke-width: 1; }
+.pf-placeholder span { font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; }
+
+.pf-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(8,8,8,0.95) 0%, transparent 60%);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 1.5rem;
+  opacity: 0;
+  transition: opacity 0.35s;
+}
+
+.pf-item:hover .pf-overlay { opacity: 1; }
+
+.pf-always {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  padding: 1rem 1.25rem;
+  background: linear-gradient(to top, rgba(8,8,8,0.8) 0%, transparent 100%);
+}
+
+.pf-tag {
+  font-size: 0.58rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.3rem;
+}
+
+.pf-client {
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.pf-result {
+  font-size: 0.75rem;
+  color: var(--gold);
+  margin-top: 0.5rem;
+}
+
+/* ─────── STATS ─────── */
+.stats-section {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--border);
+}
+
+.stat-block {
+  background: var(--black);
+  padding: 4rem 2.5rem;
+  text-align: center;
+}
+
+.stat-n {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 4.5rem;
+  color: var(--gold);
+  display: block;
+  line-height: 1;
+}
+
+.stat-label { font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); margin-top: 0.5rem; }
+
+/* ─────── CONTATO ─────── */
+.contact-section {
+  padding: 8rem 4.5rem;
+  background: var(--black-3);
+  position: relative;
+  overflow: hidden;
+}
+
+.contact-section::before {
+  content: 'CONTATO';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 18vw;
+  color: rgba(212,168,64,0.025);
+  white-space: nowrap;
+  user-select: none;
+  pointer-events: none;
+}
+
+.contact-inner {
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+  position: relative;
+  z-index: 2;
+}
+
+.contact-inner .section-h { font-size: clamp(2rem, 4vw, 3.5rem); margin-bottom: 1rem; }
+
+.contact-sub { font-size: 0.95rem; color: var(--muted); margin-bottom: 3.5rem; }
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+
+.form-group { display: flex; flex-direction: column; gap: 0.4rem; text-align: left; }
+
+.form-group label { font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); }
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(212,168,64,0.2);
+  color: var(--white);
+  padding: 0.7rem 0;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.88rem;
+  outline: none;
+  transition: border-color 0.3s;
+  width: 100%;
+}
+
+.form-group select { cursor: pointer; appearance: none; }
+
+.form-group input::placeholder,
+.form-group textarea::placeholder { color: rgba(136,136,136,0.35); }
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus { border-bottom-color: var(--gold); }
+
+.form-group textarea { resize: none; height: 90px; }
+
+.btn-submit {
+  background: transparent;
+  border: 1px solid rgba(212,168,64,0.35);
+  color: var(--gold);
+  padding: 1rem 3rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 400;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s;
+  align-self: center;
+  margin-top: 0.5rem;
+}
+
+.btn-submit:hover {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: var(--black);
+}
+
+/* WA button */
+.wa-fixed {
+  position: fixed;
+  bottom: 2rem; right: 2rem;
+  width: 56px; height: 56px;
+  background: #25D366;
+  border-radius: 50%;
+  display: flex;
+  align-items: center; justify-content: center;
+  z-index: 400;
+  text-decoration: none;
+  box-shadow: 0 4px 20px rgba(37,211,102,0.4);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.wa-fixed:hover { transform: scale(1.1); box-shadow: 0 8px 30px rgba(37,211,102,0.5); }
+
+.wa-fixed svg { width: 28px; height: 28px; fill: white; }
+
+/* ─────── FOOTER ─────── */
+footer {
+  background: var(--black);
+  border-top: 1px solid var(--border);
+  padding: 2.5rem 4.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.footer-logo {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.4rem;
+  letter-spacing: 0.15em;
+  color: var(--gold);
+}
+
+.footer-copy { font-size: 0.7rem; color: var(--muted); }
+
+.footer-social { display: flex; gap: 1.5rem; }
+
+.footer-social a {
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.25s;
+}
+
+.footer-social a:hover { color: var(--gold); }
+
+/* ─────── LIGHTBOX ─────── */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.95);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s;
+}
+
+.lightbox.open { opacity: 1; pointer-events: all; }
+
+.lightbox img {
+  max-width: 90%;
+  max-height: 90vh;
+  object-fit: contain;
+  border: 1px solid var(--border);
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 2rem; right: 2rem;
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--white);
+  width: 44px; height: 44px;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  font-size: 1.1rem;
+  transition: border-color 0.2s;
+}
+
+.lightbox-close:hover { border-color: var(--gold); color: var(--gold); }
+
+/* ─────── ANIMATIONS ─────── */
+.fade-up {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.fade-up.visible { opacity: 1; transform: translateY(0); }
+
+/* ─────── MOBILE ─────── */
+@media (max-width: 1000px) {
+  nav { padding: 1.25rem 2rem; }
+  .nav-links { display: none; }
+  .nav-hamburger { display: flex; }
+  .nav-links.open {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 56px; left: 0; right: 0;
+    background: var(--black-2);
+    padding: 2rem;
+    border-bottom: 1px solid var(--border);
+    z-index: 499;
+    gap: 1.5rem;
+  }
+  .hero { grid-template-columns: 1fr; min-height: auto; padding: 6rem 2rem 4rem; }
+  .hero-right { display: none; }
+  .section, .kits-section, .pricing-section, .loja-section, .process-section, .portfolio-section, .contact-section { padding: 4.5rem 1.75rem; }
+  .services-grid { grid-template-columns: 1fr 1fr; }
+  .pricing-grid { grid-template-columns: 1fr 1fr; }
+  .kits-grid { grid-template-columns: 1fr; }
+  .loja-layout { grid-template-columns: 1fr; gap: 3rem; }
+  .process-steps { grid-template-columns: 1fr 1fr; }
+  .process-steps::before { display: none; }
+  .portfolio-grid { grid-template-columns: 1fr 1fr; }
+  .pf-item.pf-main { grid-row: span 1; }
+  .stats-section { grid-template-columns: 1fr 1fr; }
+  footer { padding: 2rem 1.75rem; flex-direction: column; text-align: center; }
+  .form-row { grid-template-columns: 1fr; }
+  .hero-stats { flex-wrap: wrap; gap: 1.5rem; }
+  .services-intro { flex-direction: column; }
+}
+
+@media (max-width: 600px) {
+  .services-grid { grid-template-columns: 1fr; }
+  .pricing-grid { grid-template-columns: 1fr; }
+  .portfolio-grid { grid-template-columns: 1fr; }
+  .stats-section { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#" class="nav-logo">Hadan<span>.</span>Alves</a>
+  <ul class="nav-links" id="nav-links">
+    <li><a href="#servicos">Serviços</a></li>
+    <li><a href="#precos">Preços</a></li>
+    <li><a href="#kits">Kits</a></li>
+    <li><a href="#loja-nova">Loja Nova</a></li>
+    <li><a href="#portfolio">Portfólio</a></li>
+    <li><a href="#contato" class="nav-whatsapp">Orçamento</a></li>
+  </ul>
+  <div class="nav-hamburger" id="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-lines">
+    <div class="hero-line-v" style="left:50%"></div>
+  </div>
+
+  <div class="hero-left fade-up">
+    <div class="hero-eyebrow">Design Gráfico Profissional</div>
+    <h1 class="hero-h1">
+      <span class="italic">Criatividade</span><br>
+      <span>que vende,</span><br>
+      <span class="name">Design que<br>transforma.</span>
+    </h1>
+    <p class="hero-sub">Edição de fotos, flyers, criação de marcas, pôsteres e avatares 3D — identidade visual que destaca sua marca e aumenta suas vendas.</p>
+    <div class="hero-actions">
+      <a href="https://wa.me/5513991802942" target="_blank" class="btn-gold">Falar no WhatsApp →</a>
+      <a href="#servicos" class="btn-outline">Ver serviços</a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <span class="hero-stat-num">500+</span>
+        <div class="hero-stat-label">Clientes atendidos</div>
+      </div>
+      <div>
+        <span class="hero-stat-num">5+</span>
+        <div class="hero-stat-label">Anos de experiência</div>
+      </div>
+      <div>
+        <span class="hero-stat-num">100%</span>
+        <div class="hero-stat-label">Satisfação garantida</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="hero-bg-glyph">H</div>
+    <div class="logo-display">
+      <div class="logo-diamond">
+        <div class="logo-diamond-inner">H</div>
+      </div>
+      <div class="logo-title">HADAN ALVES</div>
+      <div class="logo-subtitle">Design Gráfico · Creator IAvatar</div>
+    </div>
+    <div class="float-card" style="top:20%; left:5%">
+      <div class="float-card-label">Entrega rápida</div>
+      <div class="float-card-val">24h</div>
+      <div class="float-card-sub">Para flyers & fotos</div>
+    </div>
+    <div class="float-card" style="bottom:20%; right:5%">
+      <div class="float-card-label">Atendimento</div>
+      <div class="float-card-val">(13) 99180‑2942</div>
+      <div class="float-card-sub">WhatsApp direto</div>
+    </div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-track">
+    <div class="ticker-item"><span class="dot"></span>EDIÇÃO DE FOTOS</div>
+    <div class="ticker-item"><span class="dot"></span>FLYERS TOP</div>
+    <div class="ticker-item"><span class="dot"></span>CRIAÇÃO DE MARCAS</div>
+    <div class="ticker-item"><span class="dot"></span>PÔSTERES</div>
+    <div class="ticker-item"><span class="dot"></span>AVATAR 3D</div>
+    <div class="ticker-item"><span class="dot"></span>PROJETO LOJA NOVA</div>
+    <div class="ticker-item"><span class="dot"></span>IDENTIDADE VISUAL</div>
+    <div class="ticker-item"><span class="dot"></span>ENTREGA RÁPIDA</div>
+    <div class="ticker-item"><span class="dot"></span>EDIÇÃO DE FOTOS</div>
+    <div class="ticker-item"><span class="dot"></span>FLYERS TOP</div>
+    <div class="ticker-item"><span class="dot"></span>CRIAÇÃO DE MARCAS</div>
+    <div class="ticker-item"><span class="dot"></span>PÔSTERES</div>
+    <div class="ticker-item"><span class="dot"></span>AVATAR 3D</div>
+    <div class="ticker-item"><span class="dot"></span>PROJETO LOJA NOVA</div>
+    <div class="ticker-item"><span class="dot"></span>IDENTIDADE VISUAL</div>
+    <div class="ticker-item"><span class="dot"></span>ENTREGA RÁPIDA</div>
+  </div>
+</div>
+
+<!-- SERVIÇOS -->
+<section class="section" id="servicos">
+  <div class="section-bg-num">01</div>
+  <div class="services-intro fade-up">
+    <div class="services-intro-text">
+      <div class="section-label">Especialidades</div>
+      <h2 class="section-h">Design que <em>destaca</em><br>sua marca</h2>
+      <p class="services-sub">Serviços de design gráfico profissional para elevar sua identidade visual e aumentar suas vendas com criatividade e impacto.</p>
+    </div>
+    <a href="#precos" class="btn-outline">Ver tabela de preços</a>
+  </div>
+
+  <div class="services-grid fade-up">
+    <div class="service-card">
+      <div class="service-icon-wrap">
+        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21,15 16,10 5,21"/></svg>
+      </div>
+      <div class="service-name">Edição de Fotos</div>
+      <p class="service-desc">Tratamento e correção de imagem, melhora de cores, luz e nitidez, remoção de objetos e fundos.</p>
+      <div class="service-price">R$ 15,00 <span>por foto</span></div>
+    </div>
+    <div class="service-card">
+      <div class="service-icon-wrap">
+        <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14,2 14,8 20,8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10,9 9,9 8,9"/></svg>
+      </div>
+      <div class="service-name">Flyer Top</div>
+      <p class="service-desc">Design profissional, artes criativas e impactantes, entrega rápida. Tudo que a sua promoção precisa.</p>
+      <div class="service-price">R$ 40,00 <span>por flyer</span></div>
+    </div>
+    <div class="service-card">
+      <div class="service-icon-wrap">
+        <svg viewBox="0 0 24 24"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
+      </div>
+      <div class="service-name">Criação de Marcas</div>
+      <p class="service-desc">Logotipo exclusivo, identidade visual completa, versões para redes e impressão.</p>
+      <div class="service-price">R$ 150,00 <span>por marca</span></div>
+    </div>
+    <div class="service-card">
+      <div class="service-icon-wrap">
+        <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+      </div>
+      <div class="service-name">Pôster Profissional</div>
+      <p class="service-desc">Design moderno e chamativo, ideal para divulgação de produtos e serviços.</p>
+      <div class="service-price">R$ 60,00 <span>por pôster</span></div>
+    </div>
+    <div class="service-card">
+      <div class="service-icon-wrap">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M6 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/></svg>
+      </div>
+      <div class="service-name">Avatar Personalizado</div>
+      <p class="service-desc">Avatar 3D estilo cartoon para uso em sociais, marcas e projetos. Criação exclusiva.</p>
+      <div class="service-price">R$ 50,00 <span>por avatar</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- TABELA DE PREÇOS -->
+<section class="pricing-section" id="precos">
+  <div class="section-bg-num">02</div>
+  <div class="fade-up">
+    <div class="section-label">Valores</div>
+    <h2 class="section-h">Tabela de <em>preços</em></h2>
+  </div>
+
+  <div class="pricing-grid fade-up">
+    <div class="price-card">
+      <div class="price-service-name">Edição de Fotos</div>
+      <div class="price-amount">R$15</div>
+      <div class="price-period">por foto</div>
+      <ul class="price-features">
+        <li>Tratamento e correção de imagem</li>
+        <li>Melhora de cores, luz e nitidez</li>
+        <li>Remoção de objetos e fundos</li>
+        <li>Entrega em até 24h</li>
+      </ul>
+    </div>
+    <div class="price-card featured">
+      <div class="price-badge">Popular</div>
+      <div class="price-service-name">Flyer Top</div>
+      <div class="price-amount">R$40</div>
+      <div class="price-period">por flyer</div>
+      <ul class="price-features">
+        <li>Design profissional</li>
+        <li>Artes criativas e impactantes</li>
+        <li>Versão para redes sociais</li>
+        <li>Entrega rápida</li>
+      </ul>
+    </div>
+    <div class="price-card">
+      <div class="price-service-name">Criação de Marca</div>
+      <div class="price-amount">R$150</div>
+      <div class="price-period">por marca</div>
+      <ul class="price-features">
+        <li>Logotipo exclusivo</li>
+        <li>Identidade visual completa</li>
+        <li>Versões para redes e impressão</li>
+        <li>Arquivos em alta resolução</li>
+      </ul>
+    </div>
+    <div class="price-card">
+      <div class="price-service-name">Pôster Profissional</div>
+      <div class="price-amount">R$60</div>
+      <div class="price-period">por pôster</div>
+      <ul class="price-features">
+        <li>Design moderno e chamativo</li>
+        <li>Ideal para divulgação</li>
+        <li>Adaptação para diferentes formatos</li>
+        <li>Arquivo editável</li>
+      </ul>
+    </div>
+    <div class="price-card">
+      <div class="price-service-name">Avatar 3D Personalizado</div>
+      <div class="price-amount">R$50</div>
+      <div class="price-period">por avatar</div>
+      <ul class="price-features">
+        <li>Estilo cartoon exclusivo</li>
+        <li>Para uso em redes sociais</li>
+        <li>Personalização completa</li>
+        <li>Alta resolução</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- KITS -->
+<section class="kits-section" id="kits">
+  <div class="section-bg-num">03</div>
+  <div class="fade-up">
+    <div class="section-label">Kits Promocionais</div>
+    <h2 class="section-h">Combine e <em>economize</em></h2>
+  </div>
+
+  <div class="kits-grid fade-up">
+    <div class="kit-card">
+      <div class="kit-num">01</div>
+      <div class="kit-name">Kit Básico</div>
+      <div class="kit-includes"><strong>1 Flyer</strong> + <strong>1 Avatar</strong></div>
+      <div class="kit-price-wrap">
+        <div class="kit-price">R$ 80</div>
+        <div class="kit-price-label">kit completo</div>
+      </div>
+      <a href="https://wa.me/5513991802942?text=Olá! Quero o Kit Básico" target="_blank" class="kit-cta">Pedir agora →</a>
+    </div>
+    <div class="kit-card kit-destaque">
+      <div class="kit-num">02</div>
+      <div class="kit-name">Kit Empreendedor</div>
+      <div class="kit-includes"><strong>1 Flyer</strong> + <strong>1 Logo</strong></div>
+      <div class="kit-price-wrap">
+        <div class="kit-price">R$ 160</div>
+        <div class="kit-price-label">kit completo</div>
+      </div>
+      <a href="https://wa.me/5513991802942?text=Olá! Quero o Kit Empreendedor" target="_blank" class="kit-cta">Pedir agora →</a>
+    </div>
+    <div class="kit-card">
+      <div class="kit-num">03</div>
+      <div class="kit-name">Kit Completo</div>
+      <div class="kit-includes"><strong>1 Flyer</strong> + <strong>1 Logo</strong> + <strong>1 Avatar</strong> + <strong>1 Pôster</strong></div>
+      <div class="kit-price-wrap">
+        <div class="kit-price">R$ 240</div>
+        <div class="kit-price-label">kit completo</div>
+      </div>
+      <a href="https://wa.me/5513991802942?text=Olá! Quero o Kit Completo" target="_blank" class="kit-cta">Pedir agora →</a>
+    </div>
+  </div>
+</section>
+
+<!-- PROJETO LOJA NOVA -->
+<section class="loja-section" id="loja-nova">
+  <div class="fade-up">
+    <div class="section-label">Projeto Especial</div>
+    <h2 class="section-h">Projeto <em>Loja Nova</em></h2>
+  </div>
+
+  <div class="loja-layout fade-up">
+    <div class="loja-text">
+      <p class="loja-description">
+        Transforme seu espaço em uma experiência que encanta e vende! Do 0 ou da metade a algo extraordinário. Projeto completo para sua loja com tudo que você precisa para se destacar no mercado.
+      </p>
+
+      <div class="loja-pilares">
+        <div class="pilar"><div class="pilar-dot"></div>Identidade Visual da Loja</div>
+        <div class="pilar"><div class="pilar-dot"></div>Layout Interno e Fachada</div>
+        <div class="pilar"><div class="pilar-dot"></div>Comunicação Visual Completa</div>
+        <div class="pilar"><div class="pilar-dot"></div>Decoração e Ambientação Personalizadas</div>
+        <div class="pilar"><div class="pilar-dot"></div>Estratégias de Marketing para Inauguração</div>
+        <div class="pilar"><div class="pilar-dot"></div>Material Impresso e Digital</div>
+      </div>
+
+      <a href="https://wa.me/5513991802942?text=Olá! Quero saber mais sobre o Projeto Loja Nova" target="_blank" class="btn-gold">Quero esse projeto →</a>
+    </div>
+
+    <div class="loja-price-box">
+      <span class="loja-from">Projeto completo a partir de</span>
+      <div class="loja-price-big">R$ 299</div>
+      <p class="loja-nego">
+        <strong>Negociamos o valor</strong> de acordo com o seu espaço e necessidade. Cada projeto é único — entre em contato para uma proposta personalizada.
+      </p>
+      <br>
+      <a href="https://wa.me/5513991802942?text=Quero orçamento para Projeto Loja Nova" target="_blank" class="btn-gold" style="margin-top:1.5rem">Solicitar orçamento</a>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESSO -->
+<section class="process-section" id="processo">
+  <div class="section-bg-num">04</div>
+  <div class="fade-up">
+    <div class="section-label">Como funciona</div>
+    <h2 class="section-h">Processo de <em>atendimento</em></h2>
+  </div>
+
+  <div class="process-steps fade-up">
+    <div class="step-item">
+      <div class="step-circle"><div class="step-n">01</div></div>
+      <div class="step-title">Contato</div>
+      <p class="step-desc">Entre em contato via WhatsApp e descreva o que você precisa. Atendimento rápido e personalizado.</p>
+    </div>
+    <div class="step-item">
+      <div class="step-circle"><div class="step-n">02</div></div>
+      <div class="step-title">Briefing</div>
+      <p class="step-desc">Coletamos informações sobre sua marca, estilo e objetivos para criar algo que realmente representa você.</p>
+    </div>
+    <div class="step-item">
+      <div class="step-circle"><div class="step-n">03</div></div>
+      <div class="step-title">Criação</div>
+      <p class="step-desc">Desenvolvimento do projeto com criatividade e técnica. Você acompanha o processo e pode solicitar ajustes.</p>
+    </div>
+    <div class="step-item">
+      <div class="step-circle"><div class="step-n">04</div></div>
+      <div class="step-title">Entrega</div>
+      <p class="step-desc">Entrega dos arquivos finais em alta resolução, prontos para uso em redes sociais, impressão e mais.</p>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-section fade-up">
+  <div class="stat-block">
+    <span class="stat-n">500+</span>
+    <div class="stat-label">Clientes atendidos</div>
+  </div>
+  <div class="stat-block">
+    <span class="stat-n">5+</span>
+    <div class="stat-label">Anos de experiência</div>
+  </div>
+  <div class="stat-block">
+    <span class="stat-n">100%</span>
+    <div class="stat-label">Satisfação garantida</div>
+  </div>
+  <div class="stat-block">
+    <span class="stat-n">24h</span>
+    <div class="stat-label">Entrega rápida</div>
+  </div>
+</div>
+
+<!-- PORTFÓLIO -->
+<section class="portfolio-section" id="portfolio">
+  <div class="section-bg-num">05</div>
+  <div class="fade-up">
+    <div class="section-label">Trabalhos Realizados</div>
+    <h2 class="section-h">Peças que <em>convertem</em></h2>
+  </div>
+
+  <div class="portfolio-grid fade-up">
+    <div class="pf-item pf-main" onclick="openLightbox(this)">
+      <img class="pf-img" src="/mnt/user-data/uploads/343378F3-739A-4A75-81DF-B96D62F07BFE.PNG" alt="Delux Makes — 1K Seguidores">
+      <div class="pf-always">
+        <div class="pf-tag">Avatar + Campanha</div>
+        <div class="pf-client">Delux Makes</div>
+      </div>
+      <div class="pf-overlay">
+        <div class="pf-tag">Avatar 3D + Arte Comemorativa</div>
+        <div class="pf-client">Delux Makes</div>
+        <div class="pf-result">↑ 312% engajamento · 1K seguidores</div>
+      </div>
+    </div>
+
+    <div class="pf-item">
+      <div class="pf-placeholder">
+        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21,15 16,10 5,21"/></svg>
+        <span>Em breve</span>
+      </div>
+      <div class="pf-always">
+        <div class="pf-tag">Flyer</div>
+        <div class="pf-client">Moda & Lifestyle</div>
+      </div>
+    </div>
+
+    <div class="pf-item">
+      <div class="pf-placeholder">
+        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21,15 16,10 5,21"/></svg>
+        <span>Em breve</span>
+      </div>
+      <div class="pf-always">
+        <div class="pf-tag">Logotipo</div>
+        <div class="pf-client">Beleza & Estética</div>
+      </div>
+    </div>
+
+    <div class="pf-item">
+      <div class="pf-placeholder">
+        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21,15 16,10 5,21"/></svg>
+        <span>Em breve</span>
+      </div>
+      <div class="pf-always">
+        <div class="pf-tag">Pôster</div>
+        <div class="pf-client">Alimentação</div>
+      </div>
+    </div>
+
+    <div class="pf-item">
+      <div class="pf-placeholder">
+        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21,15 16,10 5,21"/></svg>
+        <span>Em breve</span>
+      </div>
+      <div class="pf-always">
+        <div class="pf-tag">Identidade Visual</div>
+        <div class="pf-client">Loja Nova</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="text-align:center; margin-top:3rem" class="fade-up">
+    <p style="font-size:0.8rem;color:var(--muted);margin-bottom:1.5rem">Quer ver sua marca aqui? Vamos criar juntos.</p>
+    <a href="#contato" class="btn-gold">Iniciar projeto</a>
+  </div>
+</section>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+  <img id="lightbox-img" src="" alt="">
+</div>
+
+<!-- CONTATO -->
+<section class="contact-section" id="contato">
+  <div class="contact-inner fade-up">
+    <div class="section-label" style="justify-content:center">Vamos criar juntos</div>
+    <h2 class="section-h">Pronto para <em>transformar</em><br>sua marca?</h2>
+    <p class="contact-sub">Preencha o formulário ou chame direto no WhatsApp. Resposta em até 2h.</p>
+
+    <form class="contact-form" onsubmit="handleSubmit(event)">
+      <div class="form-row">
+        <div class="form-group">
+          <label>Seu nome</label>
+          <input type="text" placeholder="Ex: Maria Silva" required>
+        </div>
+        <div class="form-group">
+          <label>WhatsApp</label>
+          <input type="tel" placeholder="(13) 99999-9999" required>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>O que você precisa?</label>
+        <select required>
+          <option value="" disabled selected>Selecione o serviço</option>
+          <option>Edição de Fotos</option>
+          <option>Flyer Top</option>
+          <option>Criação de Marca / Logotipo</option>
+          <option>Pôster Profissional</option>
+          <option>Avatar 3D Personalizado</option>
+          <option>Kit Básico (Flyer + Avatar)</option>
+          <option>Kit Empreendedor (Flyer + Logo)</option>
+          <option>Kit Completo</option>
+          <option>Projeto Loja Nova</option>
+          <option>Outro</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Conte mais sobre o projeto</label>
+        <textarea placeholder="Descreva brevemente o que você quer criar..."></textarea>
+      </div>
+      <button type="submit" class="btn-submit">Enviar mensagem →</button>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Hadan Alves</div>
+  <div class="footer-copy">© 2025 Hadan Alves · Design Gráfico Profissional</div>
+  <div class="footer-social">
+    <a href="https://instagram.com" target="_blank">Instagram</a>
+    <a href="https://wa.me/5513991802942" target="_blank">WhatsApp</a>
+  </div>
+</footer>
+
+<!-- WhatsApp flutuante -->
+<a href="https://wa.me/5513991802942" target="_blank" class="wa-fixed" title="Falar no WhatsApp">
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+  </svg>
+</a>
+
+<script>
+  // NAV mobile
+  function toggleMenu() {
+    document.getElementById('nav-links').classList.toggle('open');
+  }
+
+  // Close menu on link click
+  document.querySelectorAll('.nav-links a').forEach(a => {
+    a.addEventListener('click', () => {
+      document.getElementById('nav-links').classList.remove('open');
+    });
+  });
+
+  // Lightbox
+  function openLightbox(el) {
+    const img = el.querySelector('img.pf-img');
+    if (!img) return;
+    document.getElementById('lightbox-img').src = img.src;
+    document.getElementById('lightbox').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox() {
+    document.getElementById('lightbox').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+
+  // Intersection observer
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08 });
+
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+  // Form submit
+  function handleSubmit(e) {
+    e.preventDefault();
+    const form = e.target;
+    const nome = form.querySelector('input[type=text]').value;
+    const tel = form.querySelector('input[type=tel]').value;
+    const servico = form.querySelector('select').value;
+    const msg = form.querySelector('textarea').value;
+    const text = encodeURIComponent(`Olá Hadan! Me chamo ${nome}.\nTelefone: ${tel}\nServiço: ${servico}\n\n${msg}`);
+    window.open(`https://wa.me/5513991802942?text=${text}`, '_blank');
+    const btn = form.querySelector('.btn-submit');
+    btn.textContent = 'Mensagem enviada ✓';
+    btn.style.color = 'var(--gold)';
+    btn.disabled = true;
+  }
+
+  // Hero entrance
+  const heroLeft = document.querySelector('.hero-left');
+  heroLeft.style.opacity = '0';
+  heroLeft.style.transform = 'translateY(20px)';
+  setTimeout(() => {
+    heroLeft.style.opacity = '1';
+    heroLeft.style.transform = 'translateY(0)';
+    heroLeft.style.transition = 'opacity 0.9s ease, transform 0.9s ease';
+  }, 100);
+</script>
+</body>
+</html>
